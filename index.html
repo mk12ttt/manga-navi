@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>おすすめ漫画ランキング2026 | 今読むべき神マンガ10選</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #e53935;
+      --accent: #ffc107;
+      --bg: #f5f5f5;
+      --card-bg: #ffffff;
+      --text: #212121;
+      --text-muted: #757575;
+      --border: #e0e0e0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #b71c1c 0%, #c62828 50%, #d32f2f 100%);
+      color: white;
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+    .header-logo span { color: var(--accent); }
+    .header-tagline { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(160deg, #7f0000 0%, #b71c1c 40%, #e53935 100%);
+      color: white;
+      text-align: center;
+      padding: 56px 20px 48px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 { font-size: clamp(22px, 4vw, 36px); font-weight: 900; line-height: 1.3; margin-bottom: 14px; }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero p { font-size: 14px; opacity: 0.85; max-width: 520px; margin: 0 auto 20px; }
+
+    .hero-meta {
+      font-size: 11px; opacity: 0.6;
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ===== MAIN ===== */
+    .container { max-width: 960px; margin: 0 auto; padding: 32px 16px; }
+
+    .section-title {
+      font-size: 18px; font-weight: 800; margin-bottom: 20px;
+      padding-left: 12px; border-left: 4px solid var(--primary); color: #7f0000;
+    }
+
+    .manga-list { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ===== MANGA CARD ===== */
+    .manga-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.15s, box-shadow 0.15s;
+      scroll-margin-top: 72px;
+    }
+
+    .manga-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: 14px; padding: 18px 18px 12px; position: relative;
+    }
+
+    .rank-badge {
+      position: absolute; top: -1px; left: -1px;
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900; color: white;
+      border-radius: 12px 0 12px 0;
+    }
+    .rank-1 { background: linear-gradient(135deg, #f5c518, #ff9800); }
+    .rank-2 { background: linear-gradient(135deg, #90a4ae, #607d8b); }
+    .rank-3 { background: linear-gradient(135deg, #a1887f, #6d4c41); }
+    .rank-other { background: linear-gradient(135deg, #78909c, #546e7a); font-size: 13px; }
+
+    /* カバーアイコン */
+    .manga-cover {
+      width: 72px; height: 96px;
+      border-radius: 6px;
+      margin-left: 32px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 28px;
+      font-weight: 900; text-align: center;
+      box-shadow: 2px 3px 8px rgba(0,0,0,0.25);
+      position: relative; overflow: hidden;
+    }
+
+    .manga-cover::after {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 6px; height: 100%;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .card-title-block { flex: 1; min-width: 0; }
+
+    .manga-title { font-size: 17px; font-weight: 800; margin-bottom: 4px; line-height: 1.2; }
+
+    .manga-author { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
+
+    .genre-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+
+    .genre-tag {
+      font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 20px; border: 1px solid;
+    }
+    .tag-action   { color: #c62828; border-color: #ef9a9a; background: #ffebee; }
+    .tag-sf       { color: #1565c0; border-color: #90caf9; background: #e3f2fd; }
+    .tag-fantasy  { color: #7b1fa2; border-color: #ce93d8; background: #f3e5f5; }
+    .tag-comedy   { color: #e65100; border-color: #ffcc80; background: #fff3e0; }
+    .tag-sports   { color: #2e7d32; border-color: #a5d6a7; background: #e8f5e9; }
+    .tag-romance  { color: #880e4f; border-color: #f48fb1; background: #fce4ec; }
+    .tag-horror   { color: #37474f; border-color: #cfd8dc; background: #eceff1; }
+    .tag-mystery  { color: #4a148c; border-color: #ce93d8; background: #f3e5f5; }
+    .tag-complete { color: #1b5e20; border-color: #81c784; background: #e8f5e9; }
+    .tag-ongoing  { color: #e65100; border-color: #ffb74d; background: #fff3e0; }
+
+    .star-row { display: flex; align-items: center; gap: 4px; }
+    .stars { color: #ffc107; font-size: 14px; letter-spacing: -1px; }
+    .star-score { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+
+    /* pickup */
+    .pickup-block {
+      background: linear-gradient(90deg, #fff8e1, #fffde7);
+      border-top: 1px solid #ffe082; border-bottom: 1px solid #ffe082;
+      padding: 10px 18px;
+    }
+    .pickup-label { font-size: 10px; font-weight: 900; color: #f57c00; letter-spacing: 1px; margin-bottom: 5px; }
+    .pickup-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .pickup-list li {
+      font-size: 12px; color: #5d4037;
+      display: flex; align-items: flex-start; gap: 6px;
+    }
+    .pickup-list li::before { content: "✦"; color: #ff9800; flex-shrink: 0; margin-top: 1px; }
+
+    .card-desc { padding: 12px 18px; font-size: 13px; color: #424242; line-height: 1.7; }
+
+    /* store buttons */
+    .card-footer {
+      padding: 12px 18px 16px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 8px;
+      font-size: 12px; font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .store-btn:hover { opacity: 0.85; transform: scale(1.02); }
+
+    .btn-amazon { background: #ff9900; color: white; }
+    .btn-bookwalker { background: #ff6600; color: white; }
+
+    .volume-label {
+      margin-left: auto; font-size: 11px; color: var(--text-muted);
+      background: #f5f5f5; padding: 4px 10px;
+      border-radius: 20px; border: 1px solid var(--border);
+    }
+
+    /* HOT badge */
+    .hot-badge {
+      background: var(--primary); color: white;
+      font-size: 9px; font-weight: 900;
+      padding: 2px 7px; border-radius: 4px;
+      letter-spacing: 0.5px; vertical-align: middle; margin-left: 6px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #7f0000; color: rgba(255,255,255,0.7);
+      text-align: center; padding: 32px 16px;
+      font-size: 12px; margin-top: 32px;
+    }
+    footer p + p { margin-top: 6px; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-logo"><i class="fas fa-book-open" style="font-size:18px;margin-right:6px;"></i><span>MangaNavi</span></div>
+      <div class="header-tagline">おすすめ漫画情報サイト</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><i class="fas fa-fire"></i> 2026年版 最新ランキング</div>
+  <h1>今すぐ読める<br><em>おすすめ漫画</em> 10選</h1>
+  <p>泣ける・笑える・熱くなれる！厳選した人気漫画をランキング形式で紹介します。</p>
+  <div class="hero-meta">
+    <span><i class="fas fa-calendar-alt"></i> 更新日：2026年5月22日</span>
+    <span><i class="fas fa-book"></i> 全ジャンル対応</span>
+    <span><i class="fas fa-tag"></i> 試し読みあり</span>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="container">
+  <h2 class="section-title">おすすめ漫画 ランキングTOP10</h2>
+  <div class="manga-list">
+
+    <!-- 1位 -->
+    <article class="manga-card" id="manga-1">
+      <div class="card-header">
+        <div class="rank-badge rank-1">1</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #b71c1c, #e53935);">
+          <i class="fas fa-fire"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">鬼滅の刃<span class="hot-badge">完結</span></div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 吾峠呼世晴 / 全23巻</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-fantasy">ファンタジー</span>
+            <span class="genre-tag tag-complete">完結済み</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.9 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>社会現象を巻き起こした平成・令和最大のヒット漫画</li>
+          <li>家族の絆と鬼との闘いを描く圧倒的な感動ストーリー</li>
+          <li>全23巻で完結済み、一気読みできる</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        大正時代を舞台に、鬼に家族を殺された少年・炭治郎が妹を人間に戻すため鬼と戦う物語。圧倒的な画力と感情を揺さぶるストーリーで国内累計1.5億部を突破。アニメ化・映画化も大ヒットを記録した、現代最高傑作の一つ。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E9%AC%BC%E6%BB%85%E3%81%AE%E5%88%83+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E9%AC%BC%E6%BB%85%E3%81%AE%E5%88%83&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">全23巻</span>
+      </div>
+    </article>
+
+    <!-- 2位 -->
+    <article class="manga-card" id="manga-2">
+      <div class="card-header">
+        <div class="rank-badge rank-2">2</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #0d47a1, #1976d2);">
+          <i class="fas fa-skull-crossbones"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">ワンピース</div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 尾田栄一郎 / 連載中</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-fantasy">ファンタジー</span>
+            <span class="genre-tag tag-ongoing">連載中</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.9 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>世界で最も売れた漫画シリーズ・ギネス記録保持</li>
+          <li>友情・夢・冒険が詰まった25年以上続く大河作品</li>
+          <li>読めば読むほど深まる緻密な伏線と世界観</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        海賊王を目指す少年・ルフィと仲間たちの大航海冒険譚。累計発行部数5億部超えという前人未到の記録を持つ国民的漫画。20年以上続く壮大な物語はいよいよクライマックスへ向かっており、今こそ読み始めるベストタイミング。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E3%83%AF%E3%83%B3%E3%83%94%E3%83%BC%E3%82%B9&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">連載中</span>
+      </div>
+    </article>
+
+    <!-- 3位 -->
+    <article class="manga-card" id="manga-3">
+      <div class="card-header">
+        <div class="rank-badge rank-3">3</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #4a148c, #7b1fa2);">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">呪術廻戦<span class="hot-badge">完結</span></div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 芥見下々 / 全27巻</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-horror">ダーク</span>
+            <span class="genre-tag tag-complete">完結済み</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.8 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>鬼滅の刃と並ぶ令和最大のヒット作品</li>
+          <li>スタイリッシュなバトルと予測不能な展開が癖になる</li>
+          <li>個性的なキャラクターたちの魅力が圧倒的</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        呪いの王・両面宿儺の指を飲み込んだ少年・虎杖悠仁が呪術師として戦う物語。ダークな世界観とスタイリッシュなバトル描写で一世を風靡。アニメ版も大ヒットを記録し、社会現象を巻き起こした。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E5%91%AA%E8%A1%93%E5%BB%BB%E6%88%A6+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E5%91%AA%E8%A1%93%E5%BB%BB%E6%88%A6&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">全27巻</span>
+      </div>
+    </article>
+
+    <!-- 4位 -->
+    <article class="manga-card" id="manga-4">
+      <div class="card-header">
+        <div class="rank-badge rank-other">4</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #1b5e20, #388e3c);">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">進撃の巨人<span class="hot-badge">完結</span></div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 諫山創 / 全34巻</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-sf">SF</span>
+            <span class="genre-tag tag-complete">完結済み</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.8 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>世界中で熱狂的なファンを持つ超傑作</li>
+          <li>衝撃の伏線回収と哲学的なテーマが読者を震わせる</li>
+          <li>完結済みで一気読みすると怒涛の感動が押し寄せる</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        巨人に支配された世界で人類の自由を求めて戦う物語。一見シンプルなバトル漫画かと思いきや、複雑な政治・歴史・哲学的テーマが絡み合う超大作。完結した今、全巻一気読みが最高の体験になる。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E9%80%B2%E6%92%83%E3%81%AE%E5%B7%A8%E4%BA%BA+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E9%80%B2%E6%92%83%E3%81%AE%E5%B7%A8%E4%BA%BA&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">全34巻</span>
+      </div>
+    </article>
+
+    <!-- 5位 -->
+    <article class="manga-card" id="manga-5">
+      <div class="card-header">
+        <div class="rank-badge rank-other">5</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #e65100, #f57c00);">
+          <i class="fas fa-fist-raised"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">僕のヒーローアカデミア<span class="hot-badge">完結</span></div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 堀越耕平 / 全42巻</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-sf">ヒーロー</span>
+            <span class="genre-tag tag-complete">完結済み</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.7 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>超能力を持つ人間が当たり前の世界で無個性の少年が主人公</li>
+          <li>王道ながらも熱い展開と成長ストーリーが読む人を奮い立たせる</li>
+          <li>世界的人気を誇り海外での知名度も抜群</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        「個性」という超能力が普及した世界で、無個性のデク（緑谷出久）が世界No.1ヒーローを目指す物語。王道ヒーロー漫画の到達点と言える作品で、熱い友情と成長が全巻を通じて描かれる。アニメも全7シーズン放映。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E5%83%95%E3%81%AE%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%A2%E3%82%AB%E3%83%87%E3%83%9F%E3%82%A2+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E5%83%95%E3%81%AE%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%A2%E3%82%AB%E3%83%87%E3%83%9F%E3%82%A2&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">全42巻</span>
+      </div>
+    </article>
+
+    <!-- 6位 -->
+    <article class="manga-card" id="manga-6">
+      <div class="card-header">
+        <div class="rank-badge rank-other">6</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #212121, #424242);">
+          <i class="fas fa-cut"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">チェンソーマン<span class="hot-badge">連載中</span></div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 藤本タツキ / 連載中</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-horror">ホラー</span>
+            <span class="genre-tag tag-ongoing">連載中</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.7 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>既存の漫画の概念を壊すカオスかつ中毒性の高い作風</li>
+          <li>予測不能な展開と感情を揺さぶるキャラクター描写</li>
+          <li>MAPPA制作のアニメも圧倒的クオリティで話題に</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        悪魔のチェンソーと合体した少年・デンジが悪魔ハンターとして戦う物語。藤本タツキ独特のぶっ飛んだ展開と感情移入させるキャラクター描写が唯一無二。一度読み始めたら止まらない強烈な中毒性がある。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E3%83%81%E3%82%A7%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%9E%E3%83%B3+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E3%83%81%E3%82%A7%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%9E%E3%83%B3&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">連載中</span>
+      </div>
+    </article>
+
+    <!-- 7位 -->
+    <article class="manga-card" id="manga-7">
+      <div class="card-header">
+        <div class="rank-badge rank-other">7</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #880e4f, #c2185b);">
+          <i class="fas fa-ring"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">SPY×FAMILY</div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 遠藤達哉 / 連載中</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-action">アクション</span>
+            <span class="genre-tag tag-comedy">コメディ</span>
+            <span class="genre-tag tag-ongoing">連載中</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★★</span>
+            <span class="star-score">4.7 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>スパイ×殺し屋×超能力者の仮面家族ほのぼのコメディ</li>
+          <li>アーニャのかわいさが全世代から絶大な人気を誇る</li>
+          <li>アクションからギャグまで完璧なバランスで楽しめる</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        任務のために偽の家族を作ったスパイ・ロイドと、心を読める超能力者の娘・アーニャ、そして殺し屋の妻・ヨルの三人が繰り広げるほのぼのスパイコメディ。老若男女問わず楽しめる令和を代表する名作。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=SPY+FAMILY+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=SPY+FAMILY&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">連載中</span>
+      </div>
+    </article>
+
+    <!-- 8位 -->
+    <article class="manga-card" id="manga-8">
+      <div class="card-header">
+        <div class="rank-badge rank-other">8</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #004d40, #00796b);">
+          <i class="fas fa-futbol"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">ブルーロック</div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 金城宗幸・ノ村優介 / 連載中</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-sports">スポーツ</span>
+            <span class="genre-tag tag-action">バトル</span>
+            <span class="genre-tag tag-ongoing">連載中</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★☆</span>
+            <span class="star-score">4.6 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>世界一のストライカーを育てる究極のサッカー漫画</li>
+          <li>バトル漫画のような熱量でサッカーを描く新感覚スポーツ作品</li>
+          <li>アニメ化で爆発的人気、サッカーを知らなくても面白い</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        日本サッカーを強くするため300人の高校生ストライカーを閉鎖施設「ブルーロック」に集め、最強の一人を選び出す異色のサッカー漫画。サバイバル的な展開とバトル漫画さながらの熱量で、スポーツ漫画の常識を塗り替えた。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AD%E3%83%83%E3%82%AF&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">連載中</span>
+      </div>
+    </article>
+
+    <!-- 9位 -->
+    <article class="manga-card" id="manga-9">
+      <div class="card-header">
+        <div class="rank-badge rank-other">9</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #f57f17, #f9a825);">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">推しの子</div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 赤坂アカ・横槍メンゴ / 完結</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-mystery">ミステリー</span>
+            <span class="genre-tag tag-romance">ドラマ</span>
+            <span class="genre-tag tag-complete">完結済み</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★☆</span>
+            <span class="star-score">4.6 / 5.0</span>
+          </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>芸能界の闇×転生×復讐という衝撃的な設定</li>
+          <li>アニメ主題歌「アイドル」がYouTube歴代最速1億再生を達成</li>
+          <li>予測不能なドラマと胸を刺す展開で読者を引き込む</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        人気アイドルのファンだった産婦人科医が転生し、推しの子として生まれ変わる衝撃の設定。芸能界の光と闇を赤裸々に描きながら母の死の真相に迫る物語。アニメ主題歌「アイドル」の世界的ヒットで国際的にも注目を集めた。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E6%8E%A8%E3%81%97%E3%81%AE%E5%AD%90+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E6%8E%A8%E3%81%97%E3%81%AE%E5%AD%90&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">完結済み</span>
+      </div>
+    </article>
+
+    <!-- 10位 -->
+    <article class="manga-card" id="manga-10">
+      <div class="card-header">
+        <div class="rank-badge rank-other">10</div>
+        <div class="manga-cover" style="background: linear-gradient(135deg, #37474f, #546e7a);">
+          <i class="fas fa-ghost"></i>
+        </div>
+        <div class="card-title-block">
+          <div class="manga-title">チ。―地球の運動について―<span class="hot-badge">完結</span></div>
+          <div class="manga-author"><i class="fas fa-pen-nib"></i> 魚豊 / 全8巻</div>
+          <div class="genre-tags">
+            <span class="genre-tag tag-mystery">歴史</span>
+            <span class="genre-tag tag-sf">哲学</span>
+            <span class="genre-tag tag-complete">完結済み</span>
+          </div>
+          <div class="star-row">
+            <span class="stars">★★★★☆</span>
+            <span class="star-score">4.6 / 5.0</span>
+            </div>
+        </div>
+      </div>
+      <div class="pickup-block">
+        <div class="pickup-label">✦ PICKUP ポイント</div>
+        <ul class="pickup-list">
+          <li>「地球が動く」という真実を命がけで追い求めた人々の物語</li>
+          <li>全8巻の完結作品なのに多くの漫画賞を席巻した傑作</li>
+          <li>知的好奇心を刺激する、今まで読んだことのないタイプの漫画</li>
+        </ul>
+      </div>
+      <div class="card-desc">
+        中世ヨーロッパを舞台に、地動説を異端とした時代に真実を追い求めた人々の物語。全8巻という短さながら、2021年マンガ大賞・手塚治虫文化賞など主要漫画賞を総なめにした奇跡の作品。哲学・歴史好きには特におすすめ。
+      </div>
+      <div class="card-footer">
+        <a class="store-btn btn-amazon" href="https://www.amazon.co.jp/s?k=%E3%83%81%E3%80%82%E5%9C%B0%E7%90%83%E3%81%AE%E9%81%8B%E5%8B%95+%E6%BC%AB%E7%94%BB&rh=n%3A465392" target="_blank" rel="noopener">
+          <i class="fab fa-amazon"></i> Amazonで見る
+        </a>
+        <a class="store-btn btn-bookwalker" href="https://bookwalker.jp/search/?word=%E3%83%81%E3%80%82%E5%9C%B0%E7%90%83%E3%81%AE%E9%81%8B%E5%8B%95&np=1" target="_blank" rel="noopener">
+          <i class="fas fa-book-open"></i> BookWalkerで見る
+        </a>
+        <span class="volume-label">全8巻</span>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><i class="fas fa-book-open"></i> <strong style="color:white;">MangaNavi</strong> — おすすめ漫画情報サイト</p>
+  <p>掲載情報は2026年5月時点のものです。最新情報は各ストアでご確認ください。</p>
+  <p style="margin-top:12px;">© 2026 MangaNavi. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
